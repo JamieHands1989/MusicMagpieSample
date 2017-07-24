@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="uk.co.jamiehands.musicmagpiesample.viewModel.MainActivityViewModel" />
+            type="uk.co.jamiehands.musicmagpiesample.viewModel.activity.MainActivityViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +11,30 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="uk.co.jamiehands.musicmagpiesample.view.MainActivity">
+        android:background="@color/background"
+        tools:context="uk.co.jamiehands.musicmagpiesample.view.activity.MainActivity">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtNoResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_enter_or_scan_a_barcode"
+            android:visibility="@{viewModel.showIfNoResults}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleItems"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="@{viewModel.itemLayoutManager}"
+            app:adapter="@{viewModel.itemAdapter}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/editUpc"
@@ -19,40 +42,50 @@
             android:layout_height="0dp"
             android:hint="@string/please_enter_upc"
             android:text="@={viewModel.upc}"
+            android:background="@android:color/white"
+            android:inputType="number"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="@+id/btnSubmit"
             app:layout_constraintBottom_toBottomOf="@+id/btnSubmit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnCamera"/>
+            app:layout_constraintStart_toEndOf="@+id/btnCamera"
+            app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+            tools:layout_editor_absoluteX="0dp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <android.support.v7.widget.AppCompatImageButton
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:id="@+id/btnCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/camera"
-            android:onClick="@{viewModel.showCamera()}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSubmit"/>
+            android:src="@drawable/ic_camera_alt_white_24dp"
+            android:contentDescription="@string/camera"
+            android:tint="@color/colorPrimary"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/viewCamera"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="208dp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <android.support.v7.widget.AppCompatImageButton
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/submit"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/imgBarcode"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:scaleType="fitCenter"
-            android:src="@{viewModel.bitmapDrawable}"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_search_white_24dp"
+            android:contentDescription="@string/submit"
+            android:tint="@color/colorPrimary"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/viewCamera"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteX="296dp" />
+
+        <SurfaceView
+            android:id="@+id/viewCamera"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="8dp" />
 
     </android.support.constraint.ConstraintLayout>
 

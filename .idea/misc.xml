@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="uk.co.jamiehands.musicmagpiesample.injection.component.ApplicationComponent android.app.Application application()" />
+      <entry_point TYPE="method" FQNAME="uk.co.jamiehands.musicmagpiesample.injection.component.ApplicationComponent void inject(android.app.Activity activity)" />
+      <entry_point TYPE="class" FQNAME="uk.co.jamiehands.musicmagpiesample.injection.component.ApplicationComponent" />
+      <entry_point TYPE="field" FQNAME="uk.co.jamiehands.musicmagpiesample.model.UPCLookup items" />
+      <entry_point TYPE="field" FQNAME="uk.co.jamiehands.musicmagpiesample.model.UPCLookup.LookupItem brand" />
+      <entry_point TYPE="field" FQNAME="uk.co.jamiehands.musicmagpiesample.model.UPCLookup.LookupItem title" />
+      <entry_point TYPE="field" FQNAME="uk.co.jamiehands.musicmagpiesample.model.UPCLookup.LookupItem ean" />
+      <entry_point TYPE="implicit.constructor" FQNAME="uk.co.jamiehands.musicmagpiesample.model.UPCLookup.LookupItem" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

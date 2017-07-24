@@ -2,8 +2,6 @@ package uk.co.jamiehands.musicmagpiesample.data;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-
 import javax.inject.Inject;
 
 import rx.Observable;
@@ -14,25 +12,29 @@ import uk.co.jamiehands.musicmagpiesample.injection.module.DataManagerModule;
 import uk.co.jamiehands.musicmagpiesample.model.UPCLookup;
 import uk.co.jamiehands.musicmagpiesample.view.SampleApplication;
 
+@SuppressWarnings("WeakerAccess")
 public class DataManager {
 
     /**
-     * Private variables
+     * Variables
      */
-    private Context context;
-    private Gson gson;
-
     @Inject
     protected LookupService lookupService;
     @Inject
     protected Scheduler scheduler;
 
+    /**
+     * Default constructor
+     * @param context - Context to use for data manager
+     */
     public DataManager(Context context) {
-        this.context = context;
-        this.gson = new Gson();
         injectDependencies(context);
     }
 
+    /**
+     * Configuration of injection for Retrofit2
+     * @param context - Context to use for injection
+     */
     private void injectDependencies(Context context) {
         DaggerDataManagerComponent.builder()
                 .applicationComponent(SampleApplication.get(context).getComponent())
@@ -41,10 +43,19 @@ public class DataManager {
                 .inject(this);
     }
 
+    /**
+     * Returns the scheduler used for waiting for responses
+     * @return - Scheduler to use
+     */
     public Scheduler getScheduler() {
         return this.scheduler;
     }
 
+    /**
+     * Returns information on a specified barcode
+     * @param upc - upc to lookup
+     * @return - Result of barcode lookup
+     */
     public Observable<UPCLookup> lookupUPC(String upc) {
         return lookupService.lookupUPC(upc);
     }

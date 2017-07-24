@@ -8,6 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LookupHelper {
 
+    /**
+     * Returns a new lookup service
+     * @return - Lookup service
+     */
     public LookupService newLookupService() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -3,4 +3,7 @@
     <string name="submit">Submit</string>
     <string name="please_enter_upc">Please enter UPC</string>
     <string name="camera">Camera</string>
+    <string name="asin">ASIN: %1$s</string>
+    <string name="please_enter_or_scan_a_barcode">Please enter or scan a barcode.</string>
+    <string name="no_results_found">No results found</string>
 </resources>
